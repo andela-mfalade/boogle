@@ -13,26 +13,16 @@ class Books(object):
 
     @classmethod
     def search_by(cls, search_term, filters='keyword'):
-        if filters == 'category_name':
-            return cls.search_by_category(search_term)
-        elif filters == 'book_name':
-            return cls.search_by_name(search_term)
+        if filters in ('name', 'category'):
+            return cls.search_by_filters(search_term, filters)
         else:
             return cls.search_all_fields(search_term)
 
     @classmethod
-    def search_by_category(cls, search_term):
+    def search_by_filters(cls, search_term, keyword):
         result = []
         for book in cls.ALL_BOOKS['books']:
-            if search_term in book.get('category'):
-                result.append(book)
-        return result
-
-    @classmethod
-    def search_by_name(cls, search_term):
-        result = []
-        for book in cls.ALL_BOOKS['books']:
-            if search_term in book.get('name'):
+            if search_term in book.get(keyword):
                 result.append(book)
         return result
 

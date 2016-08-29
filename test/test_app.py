@@ -34,23 +34,23 @@ class BooksModelTest(unittest.TestCase):
         self.assertEqual([], result)
 
     def test_search_by_returns_empty_list_with_inexisting_category(self):
-        result = self.Books.search_by('test', filters='category_name')
+        result = self.Books.search_by('test', filters='category')
         self.assertEqual([], result)
 
 
     def test_search_by_returns_empty_list_with_inexisting_book_name(self):
         search_term = 'ThisBookShouldNotExist'
-        result = self.Books.search_by(search_term, filters='book_name')
+        result = self.Books.search_by(search_term, filters='name')
         self.assertEqual([], result)
 
     def test_search_by_returns_non_empty_list_with_existing_book_name(self):
         search_term = 'test'
-        result = self.Books.search_by(search_term, filters='book_name')
+        result = self.Books.search_by(search_term, filters='name')
         self.assertEqual(1, len(result))
 
     def test_search_by_returns_non_empty_list_with_existing_category_name(self):
         search_term = 'action'
-        result = self.Books.search_by(search_term, filters='category_name')
+        result = self.Books.search_by(search_term, filters='category')
         self.assertEqual(1, len(result))
 
     def test_search_by_returns_non_empty_list_with_existing_keyword(self):

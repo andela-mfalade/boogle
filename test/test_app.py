@@ -12,8 +12,11 @@ class AppTest(unittest.TestCase):
 
         Create instance of client to handle requests.
         """
-        self.client = create_app('test')
+        self.app = create_app('test')
+        self.client = self.app.test_client()
 
 
-    def test_returns_flask_app_instance_on_init(self):
-        self.assertEqual(self.client, Flask(__name__))
+    def test_main_route_works_as_expected(self):
+        """Test that index route works as expected."""
+        vr = self.client.get('/')
+        self.assertEqual(vr.status_code, 200)

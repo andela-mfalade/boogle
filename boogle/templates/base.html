@@ -1,0 +1,25 @@
+{% extends 'Bootstrap/base.html' %}
+{% block title %}
+  Boogle
+{% endblock %}
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css' ) }}" media="screen" title="no title" charset="utf-8">
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="">
+        Bøøgle
+      </a>
+    </div>
+  </div>
+</div>
+<br><br><br>
+{% endblock %}
+
+
+{% block content %}
+{% endblock %}

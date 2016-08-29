@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Search Result for {{context.search_term}}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="text-center">
+        <h3>Results for "{{context.search_term}}"</h3>
+        <hr>
+        <div class="row">
+          {% if context.results %}
+            {%for book in context.results %}
+              <div class="col-md-3 fixed-height">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h5>{{book.name}}</h5>
+                    <h5><span class="label label-default">{{book.category}}</span></h5>
+                  </div>
+                </div>
+              </div>
+            {%endfor%}
+          {% else %}
+          <div class="">
+            No results were found for "{{ context.search_term }}"
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="{{url_for('main.home')}}">Try another search term</a>
+  </div>
+</div>
+{% endblock %}

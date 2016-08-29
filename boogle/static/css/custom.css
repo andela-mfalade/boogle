@@ -23,3 +23,13 @@ select {
 .vertically-spaced {
   margin: 50px 0;
 }
+
+.fixed-height {
+  height: 200px;
+  overflow: auto;
+}
+
+.panel-body {
+  height: 100%;
+  text-align: left;
+}

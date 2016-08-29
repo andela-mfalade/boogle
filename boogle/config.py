@@ -11,13 +11,13 @@ class TestingConfiguration(Config):
     TESTING = True
 
 
-class ProductionConfiguration(config):
+class ProductionConfiguration(Config):
     pass
 
 
 
 app_config = dict(
     dev=DevelopmentConfiguration,
-    testing=TestingConfiguration,
-    production=ProductionConfiguration
+    production=ProductionConfiguration,
+    test=TestingConfiguration
 )

@@ -7,7 +7,7 @@ from wtforms import validators
 class SearchForm(Form):
     CHOICES = [
         ('keyword', 'Search By Keyword'),
-        ('name', 'Search By Food Name'),
+        ('name', 'Search By Book Name'),
         ('category', 'Search By Category')
     ]
     search_term = StringField('search_term')

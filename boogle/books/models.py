@@ -22,15 +22,16 @@ class Books(object):
     def search_by_filters(cls, search_term, keyword):
         result = []
         for book in cls.ALL_BOOKS['books']:
-            if search_term in book.get(keyword):
+            if search_term in book.get(keyword).lower():
                 result.append(book)
         return result
 
     @classmethod
     def search_all_fields(cls, search_term):
         result = []
-
         for book in cls.ALL_BOOKS['books']:
-            if search_term in book['category'] or search_term in book['name']:
+            book_category = book['category'].lower()
+            book_name = book['name'].lower()
+            if search_term in book_category or search_term in book_name:
                 result.append(book)
         return result

@@ -9,7 +9,7 @@ from .models import Books
 def search():
     search_term = request.form.get('search_term')
     filters = request.form.get('filters')
-    results = Books.search_by(search_term, filters=filters)
+    results = Books.search_by(search_term.lower(), filters=filters)
     context = {
         'search_term': search_term,
         'filter': filters,

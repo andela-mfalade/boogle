@@ -20,11 +20,10 @@ class Books(object):
 
     @classmethod
     def search_by_filters(cls, search_term, keyword):
-        result = []
-        for book in cls.ALL_BOOKS['books']:
-            if search_term in book.get(keyword).lower():
-                result.append(book)
-        return result
+        return [
+            book for book in cls.ALL_BOOKS['books']
+            if search_term in book.get(keyword).lower()
+        ]
 
     @classmethod
     def search_all_fields(cls, search_term):

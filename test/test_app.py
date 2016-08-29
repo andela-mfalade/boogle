@@ -28,32 +28,33 @@ class BooksModelTest(unittest.TestCase):
         self.Books = Books
         self.Books.ALL_BOOKS = {'books': [{'category': 'action', 'name': 'test book one'}]}
 
-    def test_search_by_returns_empty_list_with_inexisting_book(self):
-        search_term = 'ThisStringShouldNotExist'
-        result = self.Books.search_by('search_term')
-        self.assertEqual([], result)
 
-    def test_search_by_returns_empty_list_with_inexisting_category(self):
+    def test_search_returns_empty_list_when_string_not_in_category_name(self):
         result = self.Books.search_by('test', filters='category')
         self.assertEqual([], result)
 
 
-    def test_search_by_returns_empty_list_with_inexisting_book_name(self):
+    def test_search_returns_empty_list_with_string_not_in_book_name(self):
         search_term = 'ThisBookShouldNotExist'
         result = self.Books.search_by(search_term, filters='name')
         self.assertEqual([], result)
 
-    def test_search_by_returns_non_empty_list_with_existing_book_name(self):
+    def test_search_returns_empty_list_when_string_not_in_book_name_or_category_name(self):
+        search_term = 'ThisStringShouldNotExist'
+        result = self.Books.search_by(search_term)
+        self.assertEqual([], result)
+
+    def test_search_returns_non_empty_list_with_string_that_exists_in_book_name(self):
         search_term = 'test'
         result = self.Books.search_by(search_term, filters='name')
         self.assertEqual(1, len(result))
 
-    def test_search_by_returns_non_empty_list_with_existing_category_name(self):
+    def test_search_returns_non_empty_list_with_string_that_exists_in_category_name(self):
         search_term = 'action'
         result = self.Books.search_by(search_term, filters='category')
         self.assertEqual(1, len(result))
 
-    def test_search_by_returns_non_empty_list_with_existing_keyword(self):
+    def test_search_returns_non_empty_list_with_keyword_that_exists_in_both_book_and_category_name(self):
         search_term = 'action'
         result = self.Books.search_by(search_term, filters='keyword')
         self.assertEqual(1, len(result))
